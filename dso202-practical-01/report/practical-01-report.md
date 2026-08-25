@@ -548,117 +548,10 @@ The final output confirmed that no kind cluster remained, completing the cleanup
 
 ---
 
-# 4. Analysis
 
-## 4.1 Kubernetes Architecture
 
-The practical demonstrated that a Kubernetes cluster consists of a control plane and worker nodes with different responsibilities. The control-plane node hosted components such as the API server, scheduler, controller manager and etcd, while worker nodes hosted application workloads together with node-level components such as kubelet and kube-proxy.
 
-The scheduler was responsible for selecting an appropriate worker node for newly created Pods. This was demonstrated by the distribution of Deployment replicas across the worker nodes without specifying individual node names in the application manifest.
-
----
-
-## 4.2 Imperative and Declarative Management
-
-Both imperative and declarative management approaches were demonstrated.
-
-Imperative commands such as:
-
-```bash
-kubectl run
-kubectl scale
-kubectl set image
-```
-
-were useful for quickly creating or modifying Kubernetes resources. However, these changes were not necessarily represented in the version-controlled YAML configuration.
-
-Declarative management used YAML manifests and:
-
-```bash
-kubectl apply -f <manifest>
-```
-
-to define the required state.
-
-Reapplying an unchanged manifest produced an `unchanged` result, demonstrating idempotency. Reapplying the Deployment manifest after imperative scaling also restored the replica count defined in the manifest.
-
-Therefore, declarative configuration provides better reproducibility, consistency and version control than relying only on imperative commands.
-
----
-
-## 4.3 Pods and Deployments
-
-A standalone Pod represents a directly created workload and does not have a higher-level controller responsible for recreating it if it is deleted.
-
-A Deployment, in contrast, manages a ReplicaSet, which continuously attempts to maintain a desired number of matching Pods.
-
-This was demonstrated when a Deployment Pod was manually deleted. Kubernetes immediately created a replacement to restore the required number of replicas.
-
-The result demonstrates that Kubernetes operates according to desired state rather than treating commands as isolated instructions.
-
----
-
-## 4.4 ResourceQuota and LimitRange
-
-ResourceQuota and LimitRange perform related but different functions.
-
-The ResourceQuota restricts total resource consumption within a namespace, including CPU, memory and object counts.
-
-The LimitRange operates at the container level and can supply default resource requests and limits where they are not explicitly defined.
-
-The practical demonstrated this interaction by creating a Pod without specifying resources. Kubernetes stored the Pod with resource requests and limits supplied by the LimitRange, allowing it to comply with the ResourceQuota requirements.
-
----
-
-## 4.5 Rolling Updates and Application Availability
-
-The Deployment rolling update demonstrated how Kubernetes can replace application versions while maintaining service availability.
-
-The configured strategy allowed new Pods to become ready before old replicas were removed. When a nonexistent nginx image was deliberately deployed, the new Pod entered `ImagePullBackOff`.
-
-However, existing healthy Pods continued running. The update therefore stalled rather than immediately causing application downtime.
-
-This demonstrated the importance of rollout strategy, readiness checks and rollback capabilities in maintaining application availability.
-
----
-
-## 4.6 Kubernetes Services and Networking
-
-Pod IP addresses are temporary and may change whenever Pods are replaced or rescheduled. For this reason, clients should not normally communicate directly with individual Pod IP addresses.
-
-The ClusterIP Service provided a stable virtual IP address and DNS name. The EndpointSlice dynamically maintained the addresses of healthy backend Pods.
-
-The practical also demonstrated Kubernetes DNS service discovery using the `client-pod`, allowing the Service to be accessed by the name:
-
-```text
-web-clusterip
-```
-
-The load-balancing experiment showed that traffic sent to the Service could reach different ready Pods.
-
-The readiness experiment further demonstrated that a Pod may remain `Running` while being temporarily excluded from Service traffic. Kubernetes therefore distinguishes between whether a container is running and whether the application is ready to receive requests.
-
-Finally, the NodePort Service demonstrated external access by exposing the nginx application on host port `30080`.
-
----
-
-## 4.7 Reproducibility
-
-One of the most significant outcomes of the practical was demonstrating that the entire application environment could be reconstructed from declarative files.
-
-After removing the workload objects, the command:
-
-```bash
-kubectl apply -f manifests/
-```
-
-recreated the required resources.
-
-This confirmed that the repository contained the desired configuration of the practical and that the running cluster did not contain essential configuration that existed only as manual changes.
-
----
-
-# 5. Reflection
+# 4. Reflection
 
 This practical provided practical experience with the relationship between Kubernetes cluster architecture, workloads, controllers and networking. Initially, working with several Kubernetes object types and understanding the difference between Docker container names, Kubernetes node names, Pods, ReplicaSets and Deployments required careful attention.
 
@@ -708,7 +601,7 @@ Overall, the practical demonstrated that Kubernetes continuously reconciles actu
 
 ---
 
-# 6. References
+# 5. References
 
 DSO202 (2026), *Practical 1 — Setting Up a Local Kubernetes Cluster with kind, and Deploying First Workloads*, DSO202 — Scaling, Orchestration, Monitoring & Observability, HackMD practical guide, accessed 18 August 2026.
 
