@@ -4,7 +4,7 @@ metadata:
   annotations:
     kubernetes.io/limit-ranger: 'LimitRanger plugin set: cpu, memory request for container
       web-imperative; cpu, memory limit for container web-imperative'
-  creationTimestamp: "2026-08-13T05:21:26Z"
+  creationTimestamp: "2026-08-25T13:07:54Z"
   generation: 1
   labels:
     app: web
@@ -12,8 +12,8 @@ metadata:
     tier: frontend
   name: web-imperative
   namespace: dso202-practical-01
-  resourceVersion: "31204"
-  uid: 6b9fef58-9227-4abe-bf0d-4f82e4bbe79e
+  resourceVersion: "57044"
+  uid: d1e7d545-992d-4e3a-892f-bd088429b9a6
 spec:
   containers:
   - image: nginx:1.30-alpine
@@ -33,7 +33,7 @@ spec:
     terminationMessagePolicy: File
     volumeMounts:
     - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-      name: kube-api-access-fw6l6
+      name: kube-api-access-dvclp
       readOnly: true
   dnsPolicy: ClusterFirst
   enableServiceLinks: true
@@ -56,7 +56,7 @@ spec:
     operator: Exists
     tolerationSeconds: 300
   volumes:
-  - name: kube-api-access-fw6l6
+  - name: kube-api-access-dvclp
     projected:
       defaultMode: 420
       sources:
@@ -80,27 +80,27 @@ status:
     memory: 64Mi
   conditions:
   - lastProbeTime: null
-    lastTransitionTime: "2026-08-13T05:21:27Z"
+    lastTransitionTime: "2026-08-25T13:07:54Z"
     observedGeneration: 1
     status: "True"
     type: PodReadyToStartContainers
   - lastProbeTime: null
-    lastTransitionTime: "2026-08-13T05:21:26Z"
+    lastTransitionTime: "2026-08-25T13:07:54Z"
     observedGeneration: 1
     status: "True"
     type: Initialized
   - lastProbeTime: null
-    lastTransitionTime: "2026-08-13T05:21:42Z"
+    lastTransitionTime: "2026-08-25T13:07:55Z"
     observedGeneration: 1
     status: "True"
     type: Ready
   - lastProbeTime: null
-    lastTransitionTime: "2026-08-13T05:21:42Z"
+    lastTransitionTime: "2026-08-25T13:07:55Z"
     observedGeneration: 1
     status: "True"
     type: ContainersReady
   - lastProbeTime: null
-    lastTransitionTime: "2026-08-13T05:21:26Z"
+    lastTransitionTime: "2026-08-25T13:07:54Z"
     observedGeneration: 1
     status: "True"
     type: PodScheduled
@@ -108,7 +108,7 @@ status:
   - allocatedResources:
       cpu: 50m
       memory: 64Mi
-    containerID: containerd://f081c8ba3ce0580feb9c1bfcfb916fe65d3e4f2c53e74938e30a9e1dc921fb3e
+    containerID: containerd://79d5ded96f0a1b6612e35335cdb7979485e8e7218025f70ce1eb24fc1e79c1f0
     image: docker.io/library/nginx:1.30-alpine
     imageID: docker.io/library/nginx@sha256:97d490c12ba55b4946b01546d1c3ed324e8d41ab1c9fcb2a616aa470620e5b46
     lastState: {}
@@ -125,7 +125,7 @@ status:
     started: true
     state:
       running:
-        startedAt: "2026-08-13T05:21:42Z"
+        startedAt: "2026-08-25T13:07:55Z"
     user:
       linux:
         gid: 0
@@ -144,23 +144,23 @@ status:
         uid: 0
     volumeMounts:
     - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-      name: kube-api-access-fw6l6
+      name: kube-api-access-dvclp
       readOnly: true
       recursiveReadOnly: Disabled
-  hostIP: 172.18.0.4
+  hostIP: 172.18.0.2
   hostIPs:
-  - ip: 172.18.0.4
+  - ip: 172.18.0.2
   observedGeneration: 1
   phase: Running
-  podIP: 10.244.2.2
+  podIP: 10.244.2.3
   podIPs:
-  - ip: 10.244.2.2
+  - ip: 10.244.2.3
   qosClass: Burstable
   resources:
     limits:
       cpu: 200m
       memory: 128Mi
     requests:
-      cpu: 28m
+      cpu: 50m
       memory: 64Mi
-  startTime: "2026-08-13T05:21:26Z"
+  startTime: "2026-08-25T13:07:54Z"

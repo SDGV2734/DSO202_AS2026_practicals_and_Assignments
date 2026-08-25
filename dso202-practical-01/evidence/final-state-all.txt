@@ -1,0 +1,18 @@
+NAME                                  READY   STATUS    RESTARTS        AGE     IP            NODE            NOMINATED NODE   READINESS GATES
+pod/client-pod                        1/1     Running   0               4h6m    10.244.1.8    worker-node-1   <none>           <none>
+pod/web-deployment-76ddf5fcf9-8nhnl   1/1     Running   0               4h38m   10.244.2.12   worker-node-2   <none>           <none>
+pod/web-deployment-76ddf5fcf9-d6g28   1/1     Running   0               4h41m   10.244.1.7    worker-node-1   <none>           <none>
+pod/web-deployment-76ddf5fcf9-fd8l4   1/1     Running   0               4h41m   10.244.2.9    worker-node-2   <none>           <none>
+pod/web-pod                           1/1     Running   2 (7h11m ago)   12d     10.244.1.2    worker-node-1   <none>           <none>
+
+NAME                    TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE     SELECTOR
+service/web-clusterip   ClusterIP   10.96.48.2      <none>        80/TCP         4h10m   app=web,tier=frontend
+service/web-nodeport    NodePort    10.96.222.194   <none>        80:30080/TCP   4h4m    app=web,tier=frontend
+
+NAME                             READY   UP-TO-DATE   AVAILABLE   AGE     CONTAINERS   IMAGES              SELECTOR
+deployment.apps/web-deployment   3/3     3            3           4h57m   web          nginx:1.30-alpine   app=web,tier=frontend
+
+NAME                                        DESIRED   CURRENT   READY   AGE     CONTAINERS   IMAGES                      SELECTOR
+replicaset.apps/web-deployment-67499b7844   0         0         0       4h40m   web          nginx:9.99-does-not-exist   app=web,pod-template-hash=67499b7844,tier=frontend
+replicaset.apps/web-deployment-76ddf5fcf9   3         3         3       4h57m   web          nginx:1.30-alpine           app=web,pod-template-hash=76ddf5fcf9,tier=frontend
+replicaset.apps/web-deployment-ddd46bfd     0         0         0       4h43m   web          nginx:1.31-alpine           app=web,pod-template-hash=ddd46bfd,tier=frontend

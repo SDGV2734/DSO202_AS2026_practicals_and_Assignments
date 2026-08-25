@@ -1,0 +1,9 @@
+NAME                         REQUEST                                                                                                                          LIMIT                                          AGE
+resourcequota/dso202-quota   count/configmaps: 1/10, count/secrets: 0/10, count/services: 2/5, pods: 5/20, requests.cpu: 225m/2, requests.memory: 288Mi/2Gi   limits.cpu: 900m/4, limits.memory: 576Mi/4Gi   13d
+
+NAME                       CREATED AT
+limitrange/dso202-limits   2026-08-12T06:09:20Z
+
+NAME                                                 ADDRESSTYPE   PORTS   ENDPOINTS                                       AGE
+endpointslice.discovery.k8s.io/web-clusterip-xqn58   IPv4          80      10.244.2.12,10.244.1.2,10.244.1.7 + 1 more...   4h10m
+endpointslice.discovery.k8s.io/web-nodeport-qjw2g    IPv4          80      10.244.1.7,10.244.2.9,10.244.2.12 + 1 more...   4h4m
