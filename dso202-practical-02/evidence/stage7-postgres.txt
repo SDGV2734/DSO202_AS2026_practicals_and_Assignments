@@ -1,0 +1,122 @@
+secret/postgres-credentials created
+NAME                   TYPE     DATA   AGE
+postgres-credentials   Opaque   3      0s
+service/postgres-headless created
+service/postgres created
+NAME                TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)    AGE
+postgres            ClusterIP   10.96.13.70   <none>        5432/TCP   0s
+postgres-headless   ClusterIP   None          <none>        5432/TCP   0s
+webnote             ClusterIP   None          <none>        80/TCP     20m
+statefulset.apps/postgres created
+pod/postgres-0 condition met
+pod/postgres-0 condition met
+server stopped
+
+PostgreSQL init process complete; ready for start up.
+
+2026-10-03 20:04:56.522 UTC [1] LOG:  starting PostgreSQL 18.6 on aarch64-unknown-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+2026-10-03 20:04:56.522 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2026-10-03 20:04:56.522 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+2026-10-03 20:04:56.524 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2026-10-03 20:04:56.529 UTC [73] LOG:  database system was shut down at 2026-10-03 20:04:56 UTC
+2026-10-03 20:04:56.533 UTC [1] LOG:  database system is ready to accept connections
+server stopped
+
+PostgreSQL init process complete; ready for start up.
+
+2026-10-03 20:04:56.522 UTC [1] LOG:  starting PostgreSQL 18.6 on aarch64-unknown-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+2026-10-03 20:04:56.522 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2026-10-03 20:04:56.522 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+2026-10-03 20:04:56.524 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2026-10-03 20:04:56.529 UTC [73] LOG:  database system was shut down at 2026-10-03 20:04:56 UTC
+2026-10-03 20:04:56.533 UTC [1] LOG:  database system is ready to accept connections
+NAME              STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS    VOLUMEATTRIBUTESCLASS   AGE
+data-postgres-0   Bound    pvc-0bc79d05-141b-4abd-bcb3-c9de39f2b84e   2Gi        RWO            dso202-retain   <unset>                 2m21s
+NAME              STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS    VOLUMEATTRIBUTESCLASS   AGE
+data-postgres-0   Bound    pvc-0bc79d05-141b-4abd-bcb3-c9de39f2b84e   2Gi        RWO            dso202-retain   <unset>                 2m21s
+NAMENAME                                                                       CAPACITY   ACCESS MODES          CAPACITYRECLAIM POLICY      ACCESS MODESSTATUS      RECLAIM POLICYCLAIM           STATUS                   CLAIM                           STORAGECLASS                    VOLUMEATTRIBUTESCLASS      STORAGECLASSREASON       VOLUMEATTRIBUTESCLASSAGE        REASONVOLUMEMODE   
+AGEpv-web-static             VOLUMEMODE        
+        pv-web-static                              1Gi        RWO                  1Gi        RWO            RetainRetain                      BoundBound        dso202-practical-02/pvc-web-staticdso202-practical-02/pvc-web-static            manualmanual                    <unset><unset>                                                    38m38m          FilesystemFilesystem
+
+pvc-0bc79d05-141b-4abd-bcb3-c9de39f2b84epvc-0bc79d05-141b-4abd-bcb3-c9de39f2b84e      2Gi2Gi                RWO            Retain           RWOBound                dso202-practical-02/data-postgres-0Retain           Bound         dso202-retaindso202-practical-02/data-postgres-0        <unset>dso202-retain                   <unset>                           2m18s            Filesystem2m18s
+   pvc-26d2e6da-422b-438e-8c08-3d82887d89aeFilesystem   
+1Gipvc-26d2e6da-422b-438e-8c08-3d82887d89ae           RWO1Gi                    RWODelete                       DeleteBound               dso202-assignment-01/db-pvcBound            dso202-assignment-01/db-pvc                  standardstandard                <unset><unset>                                                    12d12d          FilesystemFilesystem
+
+pvc-8a073aae-5d19-4bc3-9c0f-17ed6cbdd198pvc-8a073aae-5d19-4bc3-9c0f-17ed6cbdd198   1Gi        RWO               1GiDelete                RWO           Bound        Deletedso202-practical-02/content-webnote-0              standardBound            <unset>dso202-practical-02/content-webnote-0                   standard                 <unset>         22m              Filesystem        
+ pvc-cd16d0af-734a-4a03-9f40-a2ce3ec0830e22m        1GiFilesystem        
+RWOpvc-cd16d0af-734a-4a03-9f40-a2ce3ec0830e               1GiDelete                RWO           Bound        Deletedso202-practical-02/content-webnote-1              standardBound            <unset>dso202-practical-02/content-webnote-1                   standard                 <unset>         22m              Filesystem        
+ pvc-dc2bb3fb-ece4-4209-a128-3a7efc67db1f22m        1GiFilesystem        
+RWOpvc-dc2bb3fb-ece4-4209-a128-3a7efc67db1f               1GiDelete                RWO           Bound        Deletedso202-practical-02/content-webnote-2              standardBound            <unset>dso202-practical-02/content-webnote-2                   standard                 <unset>         21m              Filesystem        
+ pvc-ffcae65b-cee6-4dcb-9214-f450a0a643e721m        1GiFilesystem        
+RWOpvc-ffcae65b-cee6-4dcb-9214-f450a0a643e7               1GiDelete                RWO           Bound        Deletedso202-practical-02/content-webnote-3              standardBound            <unset>dso202-practical-02/content-webnote-3                   standard                 <unset>         15m              Filesystem        
+ 15m     Filesystem
+/var/lib/postgresql/18/docker
+drwx------   19 postgres root          4096 Oct  3 20:04 /var/lib/postgresql/18/docker
+/var/lib/postgresql/18/docker
+drwx------   19 postgres root          4096 Oct  3 20:04 /var/lib/postgresql/18/docker
+=== create table and insert three rows ===
+=== create table and insert three rows ===
+CREATE TABLE
+INSERT 0 3
+ id |        title         | done 
+----+----------------------+------
+  1 | Complete Practical 2 | f
+  2 | Read Unit II notes   | f
+  3 | Draft the report     | f
+(3 rows)
+
+=== delete database Pod and count rows after replacement ===
+pod "postgres-0" deleted from dso202-practical-02 namespace
+pod/postgres-0 condition met
+ count 
+-------
+     3
+(1 row)
+
+
+PostgreSQL Database directory appears to contain a database; Skipping initialization
+
+2026-10-03 20:05:07.351 UTC [1] LOG:  starting PostgreSQL 18.6 on aarch64-unknown-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+2026-10-03 20:05:07.351 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2026-10-03 20:05:07.351 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+2026-10-03 20:05:07.358 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2026-10-03 20:05:07.397 UTC [37] LOG:  database system was shut down at 2026-10-03 20:05:05 UTC
+2026-10-03 20:05:07.407 UTC [1] LOG:  database system is ready to accept connections
+NAME              STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS    VOLUMEATTRIBUTESCLASS   AGE
+data-postgres-0   Bound    pvc-0bc79d05-141b-4abd-bcb3-c9de39f2b84e   2Gi        RWO            dso202-retain   <unset>                 2m35s
+Server:		10.96.0.10
+Address:	10.96.0.10:53
+
+
+Name:	postgres.dso202-practical-02.svc.cluster.local
+Address: 10.96.13.70
+
+Server:		10.96.0.10
+Address:	10.96.0.10:53
+
+
+Name:	postgres-0.postgres-headless.dso202-practical-02.svc.cluster.local
+Address: 10.244.1.42
+
+
+PostgreSQL Database directory appears to contain a database; Skipping initialization
+
+2026-10-03 20:05:07.351 UTC [1] LOG:  starting PostgreSQL 18.6 on aarch64-unknown-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+2026-10-03 20:05:07.351 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2026-10-03 20:05:07.351 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+2026-10-03 20:05:07.358 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2026-10-03 20:05:07.397 UTC [37] LOG:  database system was shut down at 2026-10-03 20:05:05 UTC
+2026-10-03 20:05:07.407 UTC [1] LOG:  database system is ready to accept connections
+NAME              STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS    VOLUMEATTRIBUTESCLASS   AGE
+data-postgres-0   Bound    pvc-0bc79d05-141b-4abd-bcb3-c9de39f2b84e   2Gi        RWO            dso202-retain   <unset>                 3m12s
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                                   STORAGECLASS    VOLUMEATTRIBUTESCLASS   REASON   AGE    VOLUMEMODE
+pv-web-static                              1Gi        RWO            Retain           Bound    dso202-practical-02/pvc-web-static      manual          <unset>                          39m    Filesystem
+pvc-0bc79d05-141b-4abd-bcb3-c9de39f2b84e   2Gi        RWO            Retain           Bound    dso202-practical-02/data-postgres-0     dso202-retain   <unset>                          3m9s   Filesystem
+pvc-26d2e6da-422b-438e-8c08-3d82887d89ae   1Gi        RWO            Delete           Bound    dso202-assignment-01/db-pvc             standard        <unset>                          12d    Filesystem
+pvc-8a073aae-5d19-4bc3-9c0f-17ed6cbdd198   1Gi        RWO            Delete           Bound    dso202-practical-02/content-webnote-0   standard        <unset>                          23m    Filesystem
+pvc-cd16d0af-734a-4a03-9f40-a2ce3ec0830e   1Gi        RWO            Delete           Bound    dso202-practical-02/content-webnote-1   standard        <unset>                          22m    Filesystem
+pvc-dc2bb3fb-ece4-4209-a128-3a7efc67db1f   1Gi        RWO            Delete           Bound    dso202-practical-02/content-webnote-2   standard        <unset>                          22m    Filesystem
+pvc-ffcae65b-cee6-4dcb-9214-f450a0a643e7   1Gi        RWO            Delete           Bound    dso202-practical-02/content-webnote-3   standard        <unset>                          15m    Filesystem
+/var/lib/postgresql/18/docker
+drwx------   19 postgres root          4096 Oct  3 20:05 /var/lib/postgresql/18/docker
+=== create table and insert three rows ===

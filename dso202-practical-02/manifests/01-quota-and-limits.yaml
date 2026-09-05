@@ -76,4 +76,3 @@ spec:
         storage: 100Mi
       max:
         storage: 5Gi
-

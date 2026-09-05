@@ -39,4 +39,3 @@ volumeBindingMode: WaitForFirstConsumer
 # Attempting to enlarge a claim on this class is rejected by the API server.
 # A production class for a database would normally set this to true.
 allowVolumeExpansion: false
-

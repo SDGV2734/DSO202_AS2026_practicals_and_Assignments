@@ -1,0 +1,14 @@
+Docker:
+28.4.0
+kind:
+kind v0.32.0 go1.26.2 darwin/arm64
+kubectl:
+Client Version: v1.36.3
+Kustomize Version: v5.8.1
+Kubernetes nodes:
+NAME            STATUS   ROLES           AGE   VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE                       KERNEL-VERSION             CONTAINER-RUNTIME
+control-plane   Ready    control-plane   27d   v1.36.1   172.18.0.4    <none>        Debian GNU/Linux 13 (trixie)   6.10.14-linuxkit (arm64)   containerd://2.3.1
+worker-node-1   Ready    <none>          27d   v1.36.1   172.18.0.3    <none>        Debian GNU/Linux 13 (trixie)   6.10.14-linuxkit (arm64)   containerd://2.3.1
+worker-node-2   Ready    <none>          27d   v1.36.1   172.18.0.2    <none>        Debian GNU/Linux 13 (trixie)   6.10.14-linuxkit (arm64)   containerd://2.3.1
+PostgreSQL image:
+59:          image: postgres:18-alpine

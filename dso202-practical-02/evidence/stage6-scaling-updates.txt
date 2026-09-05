@@ -1,0 +1,93 @@
+=== scale up to four ===
+statefulset.apps/webnote scaled
+pod/webnote-3 condition met
+NAME        NODE            IMAGE
+webnote-0   worker-node-2   nginx:1.30-alpine
+webnote-1   worker-node-1   nginx:1.30-alpine
+webnote-2   worker-node-2   nginx:1.30-alpine
+webnote-3   worker-node-1   nginx:1.30-alpine
+NAME                STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+content-webnote-0   Bound    pvc-8a073aae-5d19-4bc3-9c0f-17ed6cbdd198   1Gi        RWO            standard       <unset>                 12m
+content-webnote-1   Bound    pvc-cd16d0af-734a-4a03-9f40-a2ce3ec0830e   1Gi        RWO            standard       <unset>                 12m
+content-webnote-2   Bound    pvc-dc2bb3fb-ece4-4209-a128-3a7efc67db1f   1Gi        RWO            standard       <unset>                 11m
+content-webnote-3   Bound    pvc-ffcae65b-cee6-4dcb-9214-f450a0a643e7   1Gi        RWO            standard       <unset>                 5m
+=== scale down to two; claims retained ===
+statefulset.apps/webnote scaled
+pod/webnote-3 condition met
+pod/webnote-2 condition met
+NAME        NODE
+webnote-0   worker-node-2
+webnote-1   worker-node-1
+NAME                STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+content-webnote-0   Bound    pvc-8a073aae-5d19-4bc3-9c0f-17ed6cbdd198   1Gi        RWO            standard       <unset>                 12m
+content-webnote-1   Bound    pvc-cd16d0af-734a-4a03-9f40-a2ce3ec0830e   1Gi        RWO            standard       <unset>                 12m
+content-webnote-2   Bound    pvc-dc2bb3fb-ece4-4209-a128-3a7efc67db1f   1Gi        RWO            standard       <unset>                 11m
+content-webnote-3   Bound    pvc-ffcae65b-cee6-4dcb-9214-f450a0a643e7   1Gi        RWO            standard       <unset>                 5m3s
+=== scale back to three; ordinal 2 returns ===
+statefulset.apps/webnote scaled
+pod/webnote-2 condition met
+<h2>webnote-2</h2>
+created: 2026-10-03T19:43:36Z on worker-node-2
+started: 2026-10-03T19:43:36Z on worker-node-2
+started: 2026-10-03T19:55:03Z on worker-node-2
+=== partition 2 and image 1.31 baseline ===
+NAME        IMAGE
+webnote-0   nginx:1.30-alpine
+webnote-1   nginx:1.30-alpine
+webnote-2   nginx:1.30-alpine
+=== apply partition 2 and nginx 1.31 ===
+statefulset.apps/webnote configured
+Waiting for partitioned roll out to finish: 0 out of 1 new pods have been updated...
+Waiting for 1 pods to be ready...
+Waiting for 1 pods to be ready...
+Waiting for 1 pods to be ready...
+partitioned roll out complete: 1 new pods have been updated...
+NAME        IMAGE
+webnote-0   nginx:1.30-alpine
+webnote-1   nginx:1.30-alpine
+webnote-2   nginx:1.31-alpine
+=== return partition to 0 ===
+statefulset.apps/webnote configured
+Waiting for partitioned roll out to finish: 1 out of 3 new pods have been updated...
+Waiting for partitioned roll out to finish: 1 out of 3 new pods have been updated...
+Waiting for 1 pods to be ready...
+Waiting for 1 pods to be ready...
+Waiting for 1 pods to be ready...
+Waiting for partitioned roll out to finish: 2 out of 3 new pods have been updated...
+Waiting for partitioned roll out to finish: 2 out of 3 new pods have been updated...
+Waiting for 1 pods to be ready...
+Waiting for 1 pods to be ready...
+Waiting for 1 pods to be ready...
+partitioned roll out complete: 3 new pods have been updated...
+NAME        IMAGE
+webnote-0   nginx:1.31-alpine
+webnote-1   nginx:1.31-alpine
+webnote-2   nginx:1.31-alpine
+=== delete StatefulSet; claims remain ===
+statefulset.apps "webnote" deleted from dso202-practical-02 namespace
+NAME        READY   STATUS        RESTARTS   AGE
+webnote-0   1/1     Terminating   0          2m56s
+webnote-1   1/1     Terminating   0          3m57s
+webnote-2   1/1     Terminating   0          4m59s
+NAME                STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+content-webnote-0   Bound    pvc-8a073aae-5d19-4bc3-9c0f-17ed6cbdd198   1Gi        RWO            standard       <unset>                 18m
+content-webnote-1   Bound    pvc-cd16d0af-734a-4a03-9f40-a2ce3ec0830e   1Gi        RWO            standard       <unset>                 17m
+content-webnote-2   Bound    pvc-dc2bb3fb-ece4-4209-a128-3a7efc67db1f   1Gi        RWO            standard       <unset>                 17m
+content-webnote-3   Bound    pvc-ffcae65b-cee6-4dcb-9214-f450a0a643e7   1Gi        RWO            standard       <unset>                 10m
+=== recreate StatefulSet and verify retained data ===
+statefulset.apps/webnote created
+Waiting for 3 pods to be ready...
+Waiting for 3 pods to be ready...
+Waiting for 2 pods to be ready...
+Waiting for 2 pods to be ready...
+Waiting for 2 pods to be ready...
+Waiting for 1 pods to be ready...
+Waiting for 1 pods to be ready...
+Waiting for 1 pods to be ready...
+partitioned roll out complete: 3 new pods have been updated...
+<h2>webnote-1</h2>
+created: 2026-10-03T19:43:01Z on worker-node-1
+started: 2026-10-03T19:43:01Z on worker-node-1
+started: 2026-10-03T19:49:29Z on worker-node-1
+started: 2026-10-03T19:56:43Z on worker-node-1
+started: 2026-10-03T20:00:53Z on worker-node-1

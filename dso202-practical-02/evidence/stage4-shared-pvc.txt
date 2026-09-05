@@ -1,0 +1,52 @@
++zsh:11> k apply -f manifests/08-deployment-shared-pvc.yaml
++k:0> kubectl --context kind-dso202-p2 -n dso202-practical-02 apply -f manifests/08-deployment-shared-pvc.yaml
+persistentvolumeclaim/shared-data created
+deployment.apps/shared-writer created
++zsh:12> k rollout status deployment/shared-writer '--timeout=180s'
++k:0> kubectl --context kind-dso202-p2 -n dso202-practical-02 rollout status deployment/shared-writer '--timeout=180s'
+Waiting for deployment "shared-writer" rollout to finish: 0 out of 3 new replicas have been updated...
+Waiting for deployment "shared-writer" rollout to finish: 0 of 3 updated replicas are available...
+Waiting for deployment "shared-writer" rollout to finish: 1 of 3 updated replicas are available...
+Waiting for deployment "shared-writer" rollout to finish: 2 of 3 updated replicas are available...
+deployment "shared-writer" successfully rolled out
++zsh:13> k get pods -l 'app=shared-writer' -o wide
++k:0> kubectl --context kind-dso202-p2 -n dso202-practical-02 get pods -l 'app=shared-writer' -o wide
+NAME                             READY   STATUS    RESTARTS   AGE   IP            NODE            NOMINATED NODE   READINESS GATES
+shared-writer-6f4b987c7b-7sp2v   1/1     Running   0          6s    10.244.1.14   worker-node-2   <none>           <none>
+shared-writer-6f4b987c7b-b8klz   1/1     Running   0          6s    10.244.1.13   worker-node-2   <none>           <none>
+shared-writer-6f4b987c7b-bq7sp   1/1     Running   0          6s    10.244.1.12   worker-node-2   <none>           <none>
++zsh:14> k exec deploy/shared-writer -- cat /data/visitors.log
++k:0> kubectl --context kind-dso202-p2 -n dso202-practical-02 exec deploy/shared-writer -- cat /data/visitors.log
+2026-09-30T15:28:23Z pod=shared-writer-6f4b987c7b-bq7sp node=worker-node-2
+2026-09-30T15:28:23Z pod=shared-writer-6f4b987c7b-b8klz node=worker-node-2
+2026-09-30T15:28:23Z pod=shared-writer-6f4b987c7b-7sp2v node=worker-node-2
++zsh:15> k delete pod -l 'app=shared-writer' '--field-selector=status.phase=Running'
++k:0> kubectl --context kind-dso202-p2 -n dso202-practical-02 delete pod -l 'app=shared-writer' '--field-selector=status.phase=Running'
+pod "shared-writer-6f4b987c7b-7sp2v" deleted from dso202-practical-02 namespace
+pod "shared-writer-6f4b987c7b-b8klz" deleted from dso202-practical-02 namespace
+pod "shared-writer-6f4b987c7b-bq7sp" deleted from dso202-practical-02 namespace
++zsh:16> k rollout status deployment/shared-writer '--timeout=180s'
++k:0> kubectl --context kind-dso202-p2 -n dso202-practical-02 rollout status deployment/shared-writer '--timeout=180s'
+deployment "shared-writer" successfully rolled out
++zsh:17> k get pods -l 'app=shared-writer' -o wide
++k:0> kubectl --context kind-dso202-p2 -n dso202-practical-02 get pods -l 'app=shared-writer' -o wide
+NAME                             READY   STATUS    RESTARTS   AGE   IP            NODE            NOMINATED NODE   READINESS GATES
+shared-writer-6f4b987c7b-hg88q   1/1     Running   0          7s    10.244.1.16   worker-node-2   <none>           <none>
+shared-writer-6f4b987c7b-hnn98   1/1     Running   0          7s    10.244.1.17   worker-node-2   <none>           <none>
+shared-writer-6f4b987c7b-mh7qb   1/1     Running   0          7s    10.244.1.15   worker-node-2   <none>           <none>
++zsh:18> k exec deploy/shared-writer -- cat /data/visitors.log
++k:0> kubectl --context kind-dso202-p2 -n dso202-practical-02 exec deploy/shared-writer -- cat /data/visitors.log
+2026-09-30T15:28:23Z pod=shared-writer-6f4b987c7b-bq7sp node=worker-node-2
+2026-09-30T15:28:23Z pod=shared-writer-6f4b987c7b-b8klz node=worker-node-2
+2026-09-30T15:28:23Z pod=shared-writer-6f4b987c7b-7sp2v node=worker-node-2
+2026-09-30T15:28:25Z pod=shared-writer-6f4b987c7b-hnn98 node=worker-node-2
+2026-09-30T15:28:25Z pod=shared-writer-6f4b987c7b-mh7qb node=worker-node-2
+2026-09-30T15:28:25Z pod=shared-writer-6f4b987c7b-hg88q node=worker-node-2
++zsh:19> k delete -f manifests/08-deployment-shared-pvc.yaml
++k:0> kubectl --context kind-dso202-p2 -n dso202-practical-02 delete -f manifests/08-deployment-shared-pvc.yaml
+persistentvolumeclaim "shared-data" deleted from dso202-practical-02 namespace
+deployment.apps "shared-writer" deleted from dso202-practical-02 namespace
++zsh:20> k get pvc
++k:0> kubectl --context kind-dso202-p2 -n dso202-practical-02 get pvc
+NAME             STATUS   VOLUME          CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+pvc-web-static   Bound    pv-web-static   1Gi        RWO            manual         <unset>                 4m49s

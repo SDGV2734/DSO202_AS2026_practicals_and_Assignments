@@ -1,0 +1,61 @@
+=== cleanup previous Stage 2 objects ===
+pod "static-writer" deleted from dso202-practical-02 namespace
+persistentvolumeclaim "pvc-web-static" deleted from dso202-practical-02 namespace
+NAME            CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS     CLAIM                                STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE    VOLUMEMODE
+pv-web-static   1Gi        RWO            Retain           Released   dso202-practical-02/pvc-web-static   manual         <unset>                          3d4h   Filesystem
+persistentvolume "pv-web-static" deleted
+=== PV Available ===
+persistentvolume/pv-web-static created
+NAME            CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM   STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE   VOLUMEMODE
+pv-web-static   1Gi        RWO            Retain           Available           manual         <unset>                          0s    Filesystem
+=== PVC Bound ===
+persistentvolumeclaim/pvc-web-static created
+NAME             STATUS   VOLUME          CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+pvc-web-static   Bound    pv-web-static   1Gi        RWO            manual         <unset>                 0s
+=== first Pod start ===
+pod/static-writer created
+pod/static-writer condition met
+NAME            READY   STATUS    RESTARTS   AGE   IP            NODE            NOMINATED NODE   READINESS GATES
+static-writer   1/1     Running   0          3s    10.244.2.10   worker-node-1   <none>           <none>
+2026-09-27T17:57:10Z start pod=static-writer node=worker-node-1
+2026-09-27T17:57:44Z start pod=static-writer node=worker-node-1
+2026-09-27T17:58:18Z start pod=static-writer node=worker-node-1
+2026-09-30T15:15:42Z start pod=static-writer node=worker-node-1
+2026-09-30T15:23:33Z start pod=static-writer node=worker-node-1
+2026-09-30T15:23:42Z start pod=static-writer node=worker-node-1
+2026-09-30T15:23:50Z start pod=static-writer node=worker-node-1
+2026-10-03T19:26:00Z start pod=static-writer node=worker-node-1
+=== delete and recreate Pod ===
+pod "static-writer" deleted from dso202-practical-02 namespace
+pod/static-writer created
+pod/static-writer condition met
+2026-09-27T17:57:10Z start pod=static-writer node=worker-node-1
+2026-09-27T17:57:44Z start pod=static-writer node=worker-node-1
+2026-09-27T17:58:18Z start pod=static-writer node=worker-node-1
+2026-09-30T15:15:42Z start pod=static-writer node=worker-node-1
+2026-09-30T15:23:33Z start pod=static-writer node=worker-node-1
+2026-09-30T15:23:42Z start pod=static-writer node=worker-node-1
+2026-09-30T15:23:50Z start pod=static-writer node=worker-node-1
+2026-10-03T19:26:00Z start pod=static-writer node=worker-node-1
+2026-10-03T19:26:09Z start pod=static-writer node=worker-node-1
+=== delete claim: PV Released ===
+pod "static-writer" deleted from dso202-practical-02 namespace
+persistentvolumeclaim "pvc-web-static" deleted from dso202-practical-02 namespace
+NAME            CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS     CLAIM                                STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE   VOLUMEMODE
+pv-web-static   1Gi        RWO            Retain           Released   dso202-practical-02/pvc-web-static   manual         <unset>                          20s   Filesystem
+=== delete PV object and recreate all objects ===
+persistentvolume "pv-web-static" deleted
+persistentvolume/pv-web-static created
+persistentvolumeclaim/pvc-web-static created
+pod/static-writer created
+pod/static-writer condition met
+2026-09-27T17:57:10Z start pod=static-writer node=worker-node-1
+2026-09-27T17:57:44Z start pod=static-writer node=worker-node-1
+2026-09-27T17:58:18Z start pod=static-writer node=worker-node-1
+2026-09-30T15:15:42Z start pod=static-writer node=worker-node-1
+2026-09-30T15:23:33Z start pod=static-writer node=worker-node-1
+2026-09-30T15:23:42Z start pod=static-writer node=worker-node-1
+2026-09-30T15:23:50Z start pod=static-writer node=worker-node-1
+2026-10-03T19:26:00Z start pod=static-writer node=worker-node-1
+2026-10-03T19:26:09Z start pod=static-writer node=worker-node-1
+2026-10-03T19:26:18Z start pod=static-writer node=worker-node-1

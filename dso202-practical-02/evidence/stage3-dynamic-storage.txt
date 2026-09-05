@@ -1,0 +1,39 @@
+=== PVC before consumer ===
+persistentvolumeclaim/dynamic-data created
+NAME           STATUS    VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+dynamic-data   Pending                                      standard       <unset>                 0s
+               dso202/practical=02
+               tier=storage-demo
+Annotations:   <none>
+Finalizers:    [kubernetes.io/pvc-protection]
+Capacity:      
+Access Modes:  
+VolumeMode:    Filesystem
+Used By:       <none>
+Events:
+  Type    Reason                Age   From                         Message
+  ----    ------                ----  ----                         -------
+  Normal  WaitForFirstConsumer  0s    persistentvolume-controller  waiting for first consumer to be created before binding
+=== consumer creates dynamic PV ===
+pod/dynamic-writer created
+pod/dynamic-writer condition met
+NAME             READY   STATUS    RESTARTS   AGE   IP            NODE            NOMINATED NODE   READINESS GATES
+dynamic-writer   1/1     Running   0          5s    10.244.1.20   worker-node-2   <none>           <none>
+NAME           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+dynamic-data   Bound    pvc-6b2b6055-d16e-4963-96ad-2eb077451a88   1Gi        RWO            standard       <unset>                 5s
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                                STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE   VOLUMEMODE
+pv-web-static                              1Gi        RWO            Retain           Bound    dso202-practical-02/pvc-web-static   manual         <unset>                          8m    Filesystem
+pvc-26d2e6da-422b-438e-8c08-3d82887d89ae   1Gi        RWO            Delete           Bound    dso202-assignment-01/db-pvc          standard       <unset>                          12d   Filesystem
+pvc-6b2b6055-d16e-4963-96ad-2eb077451a88   1Gi        RWO            Delete           Bound    dso202-practical-02/dynamic-data     standard       <unset>                          2s    Filesystem
+Filesystem                Size      Used Available Use% Mounted on
+/dev/vda1                58.4G     10.2G     45.1G  19% /data
+=== resize rejection ===
+Error from server (Forbidden): persistentvolumeclaims "dynamic-data" is forbidden: only dynamically provisioned pvc can be resized and the storageclass that provisions the pvc must support resize
+=== reclaim policy after deleting Pod and claim ===
+2026-10-03T19:34:17Z start pod=dynamic-writer node=worker-node-2
+pod "dynamic-writer" deleted from dso202-practical-02 namespace
+persistentvolumeclaim "dynamic-data" deleted from dso202-practical-02 namespace
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS     CLAIM                                STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE    VOLUMEMODE
+pv-web-static                              1Gi        RWO            Retain           Bound      dso202-practical-02/pvc-web-static   manual         <unset>                          8m7s   Filesystem
+pvc-26d2e6da-422b-438e-8c08-3d82887d89ae   1Gi        RWO            Delete           Bound      dso202-assignment-01/db-pvc          standard       <unset>                          12d    Filesystem
+pvc-6b2b6055-d16e-4963-96ad-2eb077451a88   1Gi        RWO            Delete           Released   dso202-practical-02/dynamic-data     standard       <unset>                          9s     Filesystem

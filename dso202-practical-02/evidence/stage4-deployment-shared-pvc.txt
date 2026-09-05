@@ -1,0 +1,27 @@
+persistentvolumeclaim/shared-data created
+deployment.apps/shared-writer created
+Waiting for deployment "shared-writer" rollout to finish: 0 out of 3 new replicas have been updated...
+Waiting for deployment "shared-writer" rollout to finish: 0 of 3 updated replicas are available...
+Waiting for deployment "shared-writer" rollout to finish: 1 of 3 updated replicas are available...
+Waiting for deployment "shared-writer" rollout to finish: 2 of 3 updated replicas are available...
+deployment "shared-writer" successfully rolled out
+=== all replicas and nodes ===
+NAME                             NODE
+shared-writer-6f4b987c7b-kdx8m   worker-node-2
+shared-writer-6f4b987c7b-p4m49   worker-node-2
+shared-writer-6f4b987c7b-rxdxz   worker-node-2
+=== shared file ===
+2026-10-03T19:40:22Z pod=shared-writer-6f4b987c7b-kdx8m node=worker-node-2
+2026-10-03T19:40:22Z pod=shared-writer-6f4b987c7b-rxdxz node=worker-node-2
+2026-10-03T19:40:22Z pod=shared-writer-6f4b987c7b-p4m49 node=worker-node-2
+=== delete one replica and observe regenerated names ===
+pod "shared-writer-6f4b987c7b-kdx8m" deleted from dso202-practical-02 namespace
+pod "shared-writer-6f4b987c7b-p4m49" deleted from dso202-practical-02 namespace
+pod "shared-writer-6f4b987c7b-rxdxz" deleted from dso202-practical-02 namespace
+NAME                             NODE
+shared-writer-6f4b987c7b-9kwv7   worker-node-2
+shared-writer-6f4b987c7b-qsb9d   worker-node-2
+shared-writer-6f4b987c7b-xhvgw   worker-node-2
+=== remove experiment ===
+persistentvolumeclaim "shared-data" deleted from dso202-practical-02 namespace
+deployment.apps "shared-writer" deleted from dso202-practical-02 namespace

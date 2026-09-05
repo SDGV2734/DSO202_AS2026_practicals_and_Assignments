@@ -1,0 +1,71 @@
+service/webnote created
+NAME      TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+webnote   ClusterIP   None         <none>        80/TCP    0s
+statefulset.apps/webnote created
+Waiting for statefulset spec update to be observed...
+Waiting for 3 pods to be ready...
+Waiting for 3 pods to be ready...
+Waiting for 2 pods to be ready...
+Waiting for 2 pods to be ready...
+Waiting for 2 pods to be ready...
+Waiting for 1 pods to be ready...
+Waiting for 1 pods to be ready...
+Waiting for 1 pods to be ready...
+partitioned roll out complete: 3 new pods have been updated...
+=== Pods, nodes, and claims ===
+NAME        READY   STATUS    RESTARTS   AGE   IP            NODE            NOMINATED NODE   READINESS GATES
+webnote-0   1/1     Running   0          95s   10.244.1.31   worker-node-2   <none>           <none>
+webnote-1   1/1     Running   0          46s   10.244.2.14   worker-node-1   <none>           <none>
+webnote-2   1/1     Running   0          11s   10.244.1.33   worker-node-2   <none>           <none>
+NAME                STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+content-webnote-0   Bound    pvc-8a073aae-5d19-4bc3-9c0f-17ed6cbdd198   1Gi        RWO            standard       <unset>                 95s
+content-webnote-1   Bound    pvc-cd16d0af-734a-4a03-9f40-a2ce3ec0830e   1Gi        RWO            standard       <unset>                 46s
+content-webnote-2   Bound    pvc-dc2bb3fb-ece4-4209-a128-3a7efc67db1f   1Gi        RWO            standard       <unset>                 11s
+=== client DNS and individual HTTP ===
+pod/client created
+pod/client condition met
+Server:		10.96.0.10
+Address:	10.96.0.10:53
+
+
+Name:	webnote.dso202-practical-02.svc.cluster.local
+Address: 10.244.1.31
+Name:	webnote.dso202-practical-02.svc.cluster.local
+Address: 10.244.1.33
+Name:	webnote.dso202-practical-02.svc.cluster.local
+Address: 10.244.2.14
+
+Server:		10.96.0.10
+Address:	10.96.0.10:53
+
+
+Name:	webnote-1.webnote.dso202-practical-02.svc.cluster.local
+Address: 10.244.2.14
+
+<h2>webnote-1</h2>
+created: 2026-10-03T19:43:01Z on worker-node-1
+started: 2026-10-03T19:43:01Z on worker-node-1
+=== private volume note ===
+Defaulted container "nginx" out of: nginx, seed-content (init)
+sh: can't create /data/index.html: nonexistent directory
+command terminated with exit code 1
+=== private volume note (nginx mount path) ===
+Defaulted container "nginx" out of: nginx, seed-content (init)
+<h2>webnote-0</h2>
+created: 2026-10-03T19:42:12Z on worker-node-2
+started: 2026-10-03T19:42:12Z on worker-node-2
+note added by hand in Stage 5
+<h2>webnote-1</h2>
+created: 2026-10-03T19:43:01Z on worker-node-1
+started: 2026-10-03T19:43:01Z on worker-node-1
+=== delete middle Pod and verify same name/PVC ===
+pod "webnote-1" deleted from dso202-practical-02 namespace
+pod/webnote-1 condition met
+NAME        READY   STATUS    RESTARTS   AGE   IP            NODE            NOMINATED NODE   READINESS GATES
+webnote-1   1/1     Running   0          7s    10.244.2.15   worker-node-1   <none>           <none>
+NAME                STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+content-webnote-1   Bound    pvc-cd16d0af-734a-4a03-9f40-a2ce3ec0830e   1Gi        RWO            standard       <unset>                 6m39s
+<h2>webnote-1</h2>
+created: 2026-10-03T19:43:01Z on worker-node-1
+started: 2026-10-03T19:43:01Z on worker-node-1
+started: 2026-10-03T19:49:29Z on worker-node-1

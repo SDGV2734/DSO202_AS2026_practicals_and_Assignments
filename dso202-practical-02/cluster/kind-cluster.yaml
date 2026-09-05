@@ -102,4 +102,3 @@ nodes:
           name: worker-node-2
           kubeletExtraArgs:
             node-labels: "dso202/node-role=worker,dso202/node-index=2"
-
