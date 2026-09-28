@@ -1,0 +1,21 @@
+$ kubectl cluster-info
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+Unable to connect to the server: dial tcp 127.0.0.1:55716: connect: operation not permitted
+
+$ kubectl get nodes -o wide
+Unable to connect to the server: dial tcp 127.0.0.1:55716: connect: operation not permitted
+
+$ kubectl version --client -o yaml
+clientVersion:
+  buildDate: "2026-07-22T18:07:38Z"
+  compiler: gc
+  gitCommit: 0f29094e5b73085e3802ecc1298ecae13866bfe6
+  gitTreeState: clean
+  gitVersion: v1.36.3
+  goVersion: go1.26.5
+  major: "1"
+  minor: "36"
+  platform: darwin/arm64
+kustomizeVersion: v5.8.1
+

@@ -1,0 +1,12 @@
+NAME                          READY   STATUS    RESTARTS   AGE
+pod/webapp-564d855dcb-gnsn4   1/1     Running   0          6m54s
+pod/webapp-564d855dcb-s79lv   1/1     Running   0          6m54s
+
+NAME             TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
+service/webapp   ClusterIP   10.96.170.26   <none>        80/TCP    6m55s
+
+NAME                     READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/webapp   2/2     2            2           6m55s
+
+NAME                                DESIRED   CURRENT   READY   AGE
+replicaset.apps/webapp-564d855dcb   2         2         2       6m54s

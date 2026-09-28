@@ -1,0 +1,7 @@
+Cluster deployment was not executed because the current Docker Desktop Kubernetes endpoint was unreachable from this environment:
+Unable to connect to the server: dial tcp 127.0.0.1:55716: connect: operation not permitted
+The rendered manifests and expected replica counts are validated locally:
+- webapp-dev: 2 replicas
+- webapp-staging: 2 replicas
+- webapp-prod: 3 replicas
+- webapp-qa: 2 replicas

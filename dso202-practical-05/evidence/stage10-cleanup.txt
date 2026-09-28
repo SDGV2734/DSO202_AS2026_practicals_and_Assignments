@@ -1,0 +1,1 @@
+Cleanup commands are ready but were not executed because no Kubernetes API endpoint was reachable. Run kubectl delete -k for dev, staging, prod, and qa after completing cluster verification.

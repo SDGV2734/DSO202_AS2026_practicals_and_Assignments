@@ -1,0 +1,5 @@
+NAME                      READY   STATUS        RESTARTS   AGE     IP            NODE                    NOMINATED NODE   READINESS GATES
+webapp-564d855dcb-gnsn4   0/1     Completed     0          9m23s   10.244.0.12   desktop-control-plane   <none>           <none>
+webapp-564d855dcb-s79lv   1/1     Terminating   0          9m23s   10.244.0.13   desktop-control-plane   <none>           <none>
+webapp-779fc77f4c-sl26p   1/1     Running       0          4s      10.244.0.21   desktop-control-plane   <none>           <none>
+webapp-779fc77f4c-xq6kt   1/1     Running       0          1s      10.244.0.22   desktop-control-plane   <none>           <none>

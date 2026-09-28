@@ -1,0 +1,16 @@
+namespace "webapp-dev" deleted
+configmap "web-content-852m9khhgg" deleted from webapp-dev namespace
+service "webapp" deleted from webapp-dev namespace
+deployment.apps "webapp" deleted from webapp-dev namespace
+namespace "webapp-staging" deleted
+configmap "web-content-t265h8k29b" deleted from webapp-staging namespace
+service "webapp" deleted from webapp-staging namespace
+deployment.apps "webapp" deleted from webapp-staging namespace
+namespace "webapp-prod" deleted
+configmap "web-content-5656885575" deleted from webapp-prod namespace
+service "webapp" deleted from webapp-prod namespace
+deployment.apps "webapp" deleted from webapp-prod namespace
+namespace "webapp-qa" deleted
+configmap "web-content-826gtkmb7c" deleted from webapp-qa namespace
+service "webapp" deleted from webapp-qa namespace
+deployment.apps "webapp" deleted from webapp-qa namespace

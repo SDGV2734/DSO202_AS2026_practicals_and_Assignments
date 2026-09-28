@@ -1,0 +1,84 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    environment: qa
+  name: webapp-qa
+---
+apiVersion: v1
+data:
+  index.html: |
+    <html><body><h1>QA environment</h1></body></html>
+kind: ConfigMap
+metadata:
+  labels:
+    app.kubernetes.io/part-of: kustomize-webapp
+    environment: qa
+  name: web-content-826gtkmb7c
+  namespace: webapp-qa
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/name: webapp
+    app.kubernetes.io/part-of: kustomize-webapp
+    environment: qa
+  name: webapp
+  namespace: webapp-qa
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: http
+  selector:
+    app.kubernetes.io/name: webapp
+    app.kubernetes.io/part-of: kustomize-webapp
+    environment: qa
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: webapp
+    app.kubernetes.io/part-of: kustomize-webapp
+    environment: qa
+  name: webapp
+  namespace: webapp-qa
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: webapp
+      app.kubernetes.io/part-of: kustomize-webapp
+      environment: qa
+  template:
+    metadata:
+      annotations:
+        training.example.com/owner: qa-team
+      labels:
+        app.kubernetes.io/name: webapp
+        app.kubernetes.io/part-of: kustomize-webapp
+        environment: qa
+    spec:
+      containers:
+      - image: nginx:1.27-alpine
+        name: webapp
+        ports:
+        - containerPort: 80
+          name: http
+        resources:
+          limits:
+            cpu: 250m
+            memory: 128Mi
+          requests:
+            cpu: 50m
+            memory: 32Mi
+        volumeMounts:
+        - mountPath: /usr/share/nginx/html/index.html
+          name: web-content
+          subPath: index.html
+      volumes:
+      - configMap:
+          name: web-content-826gtkmb7c
+        name: web-content

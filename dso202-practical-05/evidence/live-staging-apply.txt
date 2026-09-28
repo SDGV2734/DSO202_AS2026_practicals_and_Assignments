@@ -1,0 +1,4 @@
+namespace/webapp-staging unchanged
+configmap/web-content-t265h8k29b unchanged
+service/webapp unchanged
+deployment.apps/webapp unchanged

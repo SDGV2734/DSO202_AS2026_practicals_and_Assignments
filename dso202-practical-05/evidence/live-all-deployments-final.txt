@@ -1,0 +1,5 @@
+NAMESPACE        NAME     READY   UP-TO-DATE   AVAILABLE   AGE
+webapp-dev       webapp   2/2     2            2           10m
+webapp-prod      webapp   3/3     3            3           10m
+webapp-qa        webapp   2/2     2            2           9m50s
+webapp-staging   webapp   2/2     2            2           10m

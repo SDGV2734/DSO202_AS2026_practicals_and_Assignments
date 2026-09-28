@@ -1,0 +1,4 @@
+namespace/webapp-qa unchanged
+configmap/web-content-826gtkmb7c unchanged
+service/webapp unchanged
+deployment.apps/webapp unchanged
