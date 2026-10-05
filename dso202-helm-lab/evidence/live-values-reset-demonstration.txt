@@ -1,0 +1,5 @@
+USER-SUPPLIED VALUES:
+image:
+  tag: 1.27-alpine
+page:
+  environment: dev

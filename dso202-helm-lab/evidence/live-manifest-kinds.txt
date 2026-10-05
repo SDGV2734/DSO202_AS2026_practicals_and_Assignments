@@ -1,0 +1,6 @@
+# Source: webapp/templates/configmap.yaml
+kind: ConfigMap
+# Source: webapp/templates/service.yaml
+kind: Service
+# Source: webapp/templates/deployment.yaml
+kind: Deployment

@@ -1,0 +1,12 @@
+apiVersion: v2
+name: webapp
+description: A static nginx web page used for DSO202 Unit III Helm practical
+type: application
+version: 0.1.0
+appVersion: "1.30-alpine"
+kubeVersion: ">=1.30.0-0"
+keywords:
+- nginx
+- dso202
+maintainers:
+- name: DSO202 Module Team

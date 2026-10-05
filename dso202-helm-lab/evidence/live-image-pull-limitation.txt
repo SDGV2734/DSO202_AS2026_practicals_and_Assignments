@@ -1,0 +1,1 @@
+nginx:1.30-alpine failed through Docker Desktop registry mirror (HTTP 500); live run uses --set image.tag=1.27-alpine override.

@@ -1,0 +1,10 @@
+NAME: webapp-dev
+LAST DEPLOYED: Fri Nov  6 00:23:32 2026
+NAMESPACE: dso202-dev
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+NOTES:
+Release webapp-dev (revision 1) is running in namespace dso202-dev.
+Environment: dev, replicas: 1.
+Open the page with: curl http://localhost:30080

@@ -1,0 +1,25 @@
+replicaCount: 1
+image:
+  repository: nginx
+  tag: ""
+  pullPolicy: IfNotPresent
+page:
+  title: "DSO202 Helm Demo"
+  message: "Deployed by Helm"
+  environment: ""
+service:
+  type: ClusterIP
+  port: 80
+  nodePort: null
+resources:
+  requests:
+    cpu: 50m
+    memory: 32Mi
+  limits:
+    cpu: 200m
+    memory: 64Mi
+podAnnotations: {}
+global:
+  environment: ""
+nameOverride: ""
+fullnameOverride: ""

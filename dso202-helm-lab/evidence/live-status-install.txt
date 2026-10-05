@@ -1,0 +1,28 @@
+NAME: webapp-dev
+LAST DEPLOYED: Fri Nov  6 00:23:32 2026
+NAMESPACE: dso202-dev
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+RESOURCES:
+==> v1/ConfigMap
+NAME         DATA   AGE
+webapp-dev   1      2m33s
+
+==> v1/Service
+NAME         TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+webapp-dev   NodePort   10.96.44.149   <none>        80:30080/TCP   2m32s
+
+==> v1/Deployment
+NAME         READY   UP-TO-DATE   AVAILABLE   AGE
+webapp-dev   1/1     1            1           2m32s
+
+==> v1/Pod(related)
+NAME                          READY   STATUS    RESTARTS   AGE
+webapp-dev-5f9d746877-c64lf   1/1     Running   0          2m26s
+
+
+NOTES:
+Release webapp-dev (revision 1) is running in namespace dso202-dev.
+Environment: dev, replicas: 1.
+Open the page with: curl http://localhost:30080

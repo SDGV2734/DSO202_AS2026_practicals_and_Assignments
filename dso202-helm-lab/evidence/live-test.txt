@@ -1,0 +1,10 @@
+NAME: webapp-dev
+LAST DEPLOYED: Fri Nov  6 00:26:08 2026
+NAMESPACE: dso202-dev
+STATUS: deployed
+REVISION: 3
+DESCRIPTION: Rollback to 1
+TEST SUITE:     webapp-dev-test-connection
+Last Started:   Fri Nov  6 00:26:09 2026
+Last Completed: Fri Nov  6 00:26:38 2026
+Phase:          Succeeded

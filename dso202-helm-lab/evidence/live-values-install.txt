@@ -1,0 +1,10 @@
+USER-SUPPLIED VALUES:
+image:
+  tag: 1.27-alpine
+page:
+  environment: dev
+  message: Development build - not for customers
+replicaCount: 1
+service:
+  nodePort: 30080
+  type: NodePort

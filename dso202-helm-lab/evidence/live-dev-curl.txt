@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+  <head><title>DSO202 Helm Demo</title></head>
+  <body>
+    <h1>DSO202 Helm Demo</h1>
+    <p>Development build - not for customers</p>
+    <p>Environment: dev</p>
+    <p>Release: webapp-dev in namespace dso202-dev</p>
+    <p>Chart: webapp-0.1.0, application version 1.30-alpine</p>
+  </body>
+</html>

@@ -1,0 +1,1 @@
+Error: open /tmp/no-such-tag.yaml: no such file or directory

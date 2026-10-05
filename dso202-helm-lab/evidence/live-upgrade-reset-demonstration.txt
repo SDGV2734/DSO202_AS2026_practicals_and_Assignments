@@ -1,0 +1,11 @@
+Release "webapp-dev" has been upgraded. Happy Helming!
+NAME: webapp-dev
+LAST DEPLOYED: Fri Nov  6 00:27:41 2026
+NAMESPACE: dso202-dev
+STATUS: deployed
+REVISION: 4
+DESCRIPTION: Upgrade complete
+NOTES:
+Release webapp-dev (revision 4) is running in namespace dso202-dev.
+Environment: dev, replicas: 1.
+Forward a local port: kubectl -n dso202-dev port-forward svc/webapp-dev 8080:80

@@ -1,0 +1,3 @@
+Error: execution error at (webapp/templates/tests/test-connection.yaml:6:8): page.environment must be set (dev, staging or prod)
+
+Use --debug flag to render out invalid YAML

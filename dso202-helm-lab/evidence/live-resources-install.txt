@@ -1,0 +1,8 @@
+NAME                         READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/webapp-dev   1/1     1            1           2m32s
+
+NAME                 TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+service/webapp-dev   NodePort   10.96.44.149   <none>        80:30080/TCP   2m33s
+
+NAME                              READY   STATUS    RESTARTS   AGE
+pod/webapp-dev-5f9d746877-c64lf   1/1     Running   0          2m27s

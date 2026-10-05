@@ -1,0 +1,4 @@
+NAME                              READY   STATUS        RESTARTS   AGE
+pod/webapp-dev-5f9d746877-c64lf   1/1     Terminating   0          4m25s
+pod/webapp-dev-fcd9779f5-2h8jv    1/1     Terminating   0          23s
+pod/webapp-dev-test-connection    0/1     Completed     0          117s
